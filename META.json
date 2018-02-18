@@ -1,0 +1,39 @@
+{
+    "name": "psl",
+    "abstract": "Canonicalize domain names using the public suffix list",
+    "description": "This extension provides a function that given a hostname will return the registered domain that contains that host",
+    "version": "0.0.1",
+    "maintainer": [
+        "Steve Atkins <steve@wordtothewise.com>"
+    ],
+    "license": "postgresql",
+    "provides": {
+        "psl": {
+            "abstract": "Canonicalize domain names using the public suffix list",
+            "file": "sql/psl--0.0.1.sql",
+            "docfile": "README.md",
+            "version": "0.0.1"
+        }
+    },
+    "resources": {
+        "bugtracker": "https://github.com/wttw/pgpsl/issues/"
+    },
+    "repository": {
+        "url": "git://github.com/wttw/pgpsl.git",
+        "web": "https://github.com/wttw/pgpsl/",
+        "type": "git"
+    },
+    "generated_by": "Steve Atkins",
+    "meta-spec": {
+        "version": "1.0.0",
+        "url": "http://pgxn.org/meta/spec.txt"
+    },
+    "tags": [
+        "psl",
+        "public suffix list",
+        "domain",
+        "domainname",
+        "hostname",
+        "canonical"
+    ]
+}
