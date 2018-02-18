@@ -50,6 +50,11 @@ superuser:
 
     CREATE EXTENSION psl;
 
+Psl uses a compiled-in copy of the public suffix list, with no way to
+dynamically update it after it has been built. A snapshot is included
+in the distributed soure, but you can update that to the latest version
+by running `make fetch`.
+
 Usage
 -----
 
