@@ -16,12 +16,15 @@
         }
     },
     "resources": {
-        "bugtracker": "https://github.com/wttw/pgpsl/issues/"
-    },
-    "repository": {
-        "url": "git://github.com/wttw/pgpsl.git",
-        "web": "https://github.com/wttw/pgpsl/",
-        "type": "git"
+        "homepage": "https://github.com/wttw/pgpsl",
+        "bugtracker": {
+            "web": "https://github.com/wttw/pgpsl/issues/"
+        },
+        "repository": {
+            "url": "git://github.com/wttw/pgpsl.git",
+            "web": "https://github.com/wttw/pgpsl/",
+            "type": "git"
+        },
     },
     "generated_by": "Steve Atkins",
     "meta-spec": {
