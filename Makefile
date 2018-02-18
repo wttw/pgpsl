@@ -1,5 +1,5 @@
 EXTENSION = psl
-EXTVERSION = "0.0.1"
+EXTVERSION = 0.0.1
 DATA = sql/psl--$(EXTVERSION).sql
 MODULE_big = psl
 OBJS = src/pgpsl.o src/regdom.o
@@ -26,4 +26,4 @@ fetch:
 
 .PHONY: package
 package:
-	git archive --format zip --prefix=psl-$(EXTVERSION)/ --output /tmp/psl-$(VERSION).zip master
+	git archive --format zip --prefix=psl-$(EXTVERSION)/ --output /tmp/psl-$(EXTVERSION).zip master
