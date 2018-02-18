@@ -24,7 +24,7 @@
             "url": "git://github.com/wttw/pgpsl.git",
             "web": "https://github.com/wttw/pgpsl/",
             "type": "git"
-        },
+        }
     },
     "generated_by": "Steve Atkins",
     "meta-spec": {
