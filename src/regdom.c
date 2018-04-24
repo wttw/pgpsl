@@ -63,7 +63,7 @@ parseTldNode(const char **dptr)
     tldnode *rv;
     const char *p = *dptr;
     const char *name, *nend;
-    unsigned long nchildren;
+    unsigned long nchildren, i;
 
     // When we are called, the first thing at '*dptr' will be either
     // a name token (terminated by one of ',' '(' ')') or one of the
@@ -110,7 +110,7 @@ parseTldNode(const char **dptr)
         rv->label[nend-name] = '\0';
 
         *dptr = p;
-        for (unsigned long i = 0; i < nchildren; i++)
+        for (i = 0; i < nchildren; i++)
         {
             subnodes_w(rv)[i] = parseTldNode(dptr);
             if (**dptr != ((i == nchildren-1) ? ')' : ','))
@@ -135,6 +135,7 @@ loadTldTree(void)
 static void
 printTldTreeI(const tldnode *node, const char *spacer)
 {
+    unsigned int i;
     if (node->attr)
         printf("%s%s: %c\n", spacer, node->label, node->attr);
     else
@@ -149,7 +150,7 @@ printTldTreeI(const tldnode *node, const char *spacer)
         nspacer[n+1] = ' ';
         nspacer[n+2] = '\0';
 
-        for (unsigned int i = 0; i < node->num_children; i++)
+        for (i = 0; i < node->num_children; i++)
             printTldTreeI(subnodes(node)[i], nspacer);
     }
 }
@@ -165,7 +166,8 @@ printTldTree(const void *node, const char *spacer)
 static void
 freeTldTreeI(tldnode *node)
 {
-    for (unsigned int i = 0; i < node->num_children; i++)
+    unsigned int i;
+    for (i = 0; i < node->num_children; i++)
         freeTldTreeI(subnodes_w(node)[i]);
     // subnodes(node), by itself, is the pointer originally received from
     // malloc.
@@ -183,8 +185,9 @@ static const tldnode *
 findTldNode(const tldnode *parent, const char *seg_start, const char *seg_end)
 {
     const tldnode *allNode = 0;
+    unsigned int i;
 
-    for (unsigned int i = 0; i < parent->num_children; i++)
+    for (i = 0; i < parent->num_children; i++)
     {
         if (!allNode && subnodes(parent)[i]->attr == ALL)
             allNode = subnodes(parent)[i];
@@ -203,28 +206,29 @@ static char *
 getRegisteredDomainDropI(const char *hostname, const tldnode *tree,
                          int drop_unknown)
 {
+    const char *head, *seg_end, *seg_start;
     // Eliminate some special (always-fail) cases first.
     if (hostname[0] == '.' || hostname[0] == '\0')
         return 0;
 
     // The registered domain will always be a suffix of the input hostname.
     // Start at the end of the name and work backward.
-    const char *head = hostname;
-    const char *seg_end = hostname + strlen(hostname);
-    const char *seg_start;
+    head = hostname;
+    seg_end = hostname + strlen(hostname);
 
     if (seg_end[-1] == '.')
         seg_end--;
     seg_start = seg_end;
 
     for (;;) {
+        const tldnode *subtree;
         while (seg_start > head && *seg_start != '.')
             seg_start--;
         if (*seg_start == '.')
             seg_start++;
 
         // [seg_start, seg_end) is one label.
-        const tldnode *subtree = findTldNode(tree, seg_start, seg_end);
+        subtree = findTldNode(tree, seg_start, seg_end);
         if (!subtree
             || (subtree->num_children == 1
                 && subnodes(subtree)[0]->attr == THIS))

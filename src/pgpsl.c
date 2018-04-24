@@ -11,12 +11,13 @@ void *tree = 0;
 PG_FUNCTION_INFO_V1(registered_domain);
 Datum registered_domain(PG_FUNCTION_ARGS) {
   text *in = PG_GETARG_TEXT_P(0);
+  char *ret;
 
   if (0 == tree) {
     tree = loadTldTree();
   }
 
-  char *ret = getRegisteredDomain(text_to_cstring(in), tree);
+  ret = getRegisteredDomain(text_to_cstring(in), tree);
 
   if (0 == ret) {
     PG_RETURN_NULL();
