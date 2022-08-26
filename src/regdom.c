@@ -132,6 +132,7 @@ loadTldTree(void)
     return rv;
 }
 
+/*
 static void
 printTldTreeI(const tldnode *node, const char *spacer)
 {
@@ -162,6 +163,7 @@ printTldTree(const void *node, const char *spacer)
         spacer = "";
     printTldTreeI((const tldnode *) node, spacer);
 }
+*/
 
 static void
 freeTldTreeI(tldnode *node)
