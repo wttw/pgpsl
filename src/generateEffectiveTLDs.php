@@ -11,7 +11,7 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
-DEFINE('URL', 'https://publicsuffix.org/list/public_suffix_list.dat');
+DEFINE('URL', 'https://publicsuffix.org/list/effective_tld_names.dat');
 
 $format = "php";
 if ($_SERVER['argc']>1) {
@@ -129,9 +129,9 @@ function printNode_C($key, $valueTree) {
 
 				$key = $keys[$i];
 
-				// if (count($valueTree[$key])>0) {
+				if (is_array($valueTree[$key])) {
 					printNode_C($key, $valueTree[$key]);
-				// }
+				}
 
 				if ($i+1 != count($valueTree)) {
 					echo ",";
@@ -150,7 +150,7 @@ error_reporting(E_ERROR);
 $tldTree = array();
 $list = file_get_contents(URL);
 // $list = "bg\na.bg\n0.bg\n!c.bg\n";
-$lines = split("\n", $list);
+$lines = explode("\n", $list);
 $licence = TRUE;
 
 if ($format == "php") echo "<?php\n";
@@ -176,7 +176,7 @@ foreach ($lines as $line) {
 	}
 
 	// this must be a TLD
-	$tldParts = split('\.', $line);
+	$tldParts = explode('.', $line);
 	buildSubdomain($tldTree, $tldParts);
 }
 
