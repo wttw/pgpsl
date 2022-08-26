@@ -1,0 +1,5 @@
+.idea/
+psl.so
+results/
+src/pgpsl.o
+src/regdom.o

@@ -2,7 +2,7 @@
     "name": "psl",
     "abstract": "Canonicalize domain names using the public suffix list",
     "description": "This extension provides a function that given a hostname will return the registered domain that contains that host",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "maintainer": [
         "Steve Atkins <steve@wordtothewise.com>"
     ],
@@ -10,9 +10,9 @@
     "provides": {
         "psl": {
             "abstract": "Canonicalize domain names using the public suffix list",
-            "file": "sql/psl--0.0.1.sql",
+            "file": "sql/psl--1.0.0.sql",
             "docfile": "README.md",
-            "version": "0.0.1"
+            "version": "1.0.0"
         }
     },
     "resources": {
