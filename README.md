@@ -1,4 +1,4 @@
-psl 0.0.1
+psl 1.0.0
 =========
 
 This extension contains a single PostgreSQL function, registered_domain(),
