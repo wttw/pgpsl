@@ -1,5 +1,5 @@
 EXTENSION = psl
-EXTVERSION = 0.0.1
+EXTVERSION = 1.0.0
 DATA = sql/psl--$(EXTVERSION).sql
 MODULE_big = psl
 OBJS = src/pgpsl.o src/regdom.o

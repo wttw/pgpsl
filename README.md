@@ -98,6 +98,14 @@ hostname.
      uk.ie
     (1 row)
 
+Bugs
+----
+
+The upstream code from regdom-libs is broken in that the PHP code
+used to preprocess the PSL for the C code to read errors out. Attempting
+to fix that causes the embedded PSL to be corrupt in a way that causes
+things to SEGV. Either it needs to be fixed or replaced.
+
 Copyright and License
 ---------------------
 
